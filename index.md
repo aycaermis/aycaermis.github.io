@@ -12,7 +12,7 @@ We plan to address this specific area by developing an algorithm that predicts t
 # 2. Data Sample
 In order to develop our algorithm, we have used a public dataset in which a total of 23737 participants from various countries were involved [9,10]. Among these 23737 participants, 17904 also took a personality test, and from these 17904 people, only 8101 people also provided their age and gender information.
 
-A total of 150 different musical excerpts were used for the test but the participant had to listen to 25 randomly selected 15 seconds long excerpts out of these 150. The participants were asked to rate their likeness to those excerpts from 1 ($\textit{Not at all}$) to 9 ($\textit{Very Much}$). Genres for these musical excerpts were already labelled in the data set. A total of 19 genres were used for testing which were grouped according to five-factor MUSIC model; $\textbf{M}=$ Mellow, $\textbf{U}=$ Unpretentious, $\textbf{S}=$ Sophisticated, $\textbf{I}=$ Intense, $\textbf{C}=$ Contemporary [11]. According to [9], breakdown of grouping 19 genres into five categories is as follows:
+A total of 150 different musical excerpts were used for the test but the participant had to listen to 25 randomly selected 15 seconds long excerpts out of these 150. The participants were asked to rate their likeness to those excerpts from 1 (*Not at all*) to 9 (*Very Much*). Genres for these musical excerpts were already labelled in the data set. A total of 19 genres were used for testing which were grouped according to five-factor MUSIC model; __M__= Mellow, __U__= Unpretentious, __S__= Sophisticated, __I__= Intense, __C__= Contemporary [11]. According to [9], breakdown of grouping 19 genres into five categories is as follows:
 
 Music Factor  |         Genres
 ------------- | ---------------------
@@ -22,7 +22,7 @@ Sophisticated     | Avant Garde Classical, Classical, Latin, Traditional Jazz
 Intense       |  Classic Rock, Metal, Punk                    
 Contemporary  |  Electronica, Euro-pop, Rap/Hip-Hop               
 
-Results of the personality test prticipants partook in analyzes Big Five personality traits; $\textbf{O}=$ Openness, $\textbf{C}=$ Conscientiousness, $\textbf{E}=$ Extraversion, $\textbf{A}=$ Agreeableness, $\textbf{N}=$ Neuroticism and assigns a score for each trait from 1 ($\textit{low}$)–5 ($\textit{high}$).
+Results of the personality test prticipants partook in analyzes Big Five personality traits; __O__= Openness, __C__= Conscientiousness, __E__= Extraversion, __A__= Agreeableness, __N__= Neuroticism and assigns a score for each trait from 1 (*low*)–5 (*high*).
 
 Our main objective was to develop a model that can assess the music choices and based on that predict the personality traits score for the individual. 
 
@@ -35,11 +35,11 @@ Below are some plots to help visualize the data set:
 - Below is the pie chart showing the distribution of the questions on the musical preferences test according to the genres and five-factor MUSIC model each question belongs to: 
 ![Image](nested_pie_chart.png)
 
-First five questions of the music test contains music excerpts of genres EZ Listening, Smooth, Quiet Storm, Soft Rock all of which characterizes $\textit{Mellow}$ factor. Similarly, following 5 questions (questions 6-10) represent genres of Electronica, Euro-pop, Rap/Hip-Hop all of which characterizes $\textit{Contemporary}$ factor. Questions 11-15 consist of music excerpts from genres Avant Garde Classical, Classical, Latin, Traditional Jazz representing $\textit{Sophisticated}$ factor. Questions 16-20 have 1-2 music excerpts from Classic Rock, Metal, Punk genres, all of which belongs to $\textit{Intense}$. Lastly, questions 21-25 have excerpts from Bluegrass, Country- rock, Mainstream Country, New Country, Rock-n-Roll genres to represent $\textit{Unpretentious}$ factor in the $\textbf{MUSIC}$ model.  
+First five questions of the music test contains music excerpts of genres EZ Listening, Smooth, Quiet Storm, Soft Rock all of which characterizes *Mellow* factor. Similarly, following 5 questions (questions 6-10) represent genres of Electronica, Euro-pop, Rap/Hip-Hop all of which characterizes *Contemporary* factor. Questions 11-15 consist of music excerpts from genres Avant Garde Classical, Classical, Latin, Traditional Jazz representing *Sophisticated* factor. Questions 16-20 have 1-2 music excerpts from Classic Rock, Metal, Punk genres, all of which belongs to *Intense*. Lastly, questions 21-25 have excerpts from Bluegrass, Country- rock, Mainstream Country, New Country, Rock-n-Roll genres to represent *Unpretentious* factor in the __MUSIC__ model.  
 
 # 3. Methodology
 ### 3.1. Data Pre-processing
-As explained in Section 2 ($\textit{Data Sample}$) , among 17904 people who took both a personality test and the music preferences survey, only 8101 people also disclosed their age and gender information. In order to remain consistent across different studies used in our project, we decided to use the data belonging to these 8101 people ($N = 8101$). $90\%$ of the data is used for training and the remaining $10\%$ is used to validate the learning algorithm. Since the size of our data set is $\textit{N = 8101}$, the last $810$ data points are selected as the test data. 
+As explained in Section 2 (*Data Sample*) , among 17904 people who took both a personality test and the music preferences survey, only 8101 people also disclosed their age and gender information. In order to remain consistent across different studies used in our project, we decided to use the data belonging to these 8101 people (N = 8101). 90% of the data is used for training and the remaining 10% is used to validate the learning algorithm. Since the size of our data set is N = 8101, the last 810 data points are selected as the test data. 
 
 Data is then normalized using the mean and variance values for each feature and labels of training data. Age and gender data are not normalized. Below are tables illustrating the mean and standard deviation values corresponding to survey results and labels:
 
@@ -61,7 +61,7 @@ Using these mean and variance values, data is then normalized according to the f
 We randomly split our dataset into 10-folds, one for the test and 9 for the training. A linear model is trained by fitting the linear regressions with the LASSO and Ridge regularization, which help reduce the risk of overfitting issue. In order to get the best tuning parameter, $\lambda$, we run a 10-fold cross-validation of training dataset and select the $\lambda$ parameter with the smallest root-mean-square-error (RMSE) as our $\lambda$. With the trained model, we predict the labels for the test data and compare with the given labels. The accuracy the prediction is then evaluated by calculating the Pearson’s correlation coefficient between the real and predicted personality-traits. RMSE values for the prediction results are also calculated to provide a better insight on the performance of our algorithm.
 
 # Study Results
-To evaluate the performance of our algorithm, we ran three studies out of sample dataset. In the first study, survey results of all 25 questions are treated as features, i.e. $d = 25$. For the second study, age and gender information of participants are used as features along with survey responses to 25 questions, i.e. $d= 27$. Lastly, survey responses are grouped according to five-factor MUSIC model, where each five questions represents $\textit{Mellow, Contemporary, Sophisticated, Intense and Unpretentious}$, respectively. In each MUSIC category, results were averaged such that number of features are reduced to 5. In each study, labels are selected to be the individual scores for each Big-Five personality traits (O, C, E, A, N). For each study, we ran the prediction on each label (i.e. score for one personality trait) individually to increase the performance of our prediction algorithm.
+To evaluate the performance of our algorithm, we ran three studies out of sample dataset. In the first study, survey results of all 25 questions are treated as features, i.e. *d = 25*. For the second study, age and gender information of participants are used as features along with survey responses to 25 questions, i.e. *d= 27*. Lastly, survey responses are grouped according to five-factor MUSIC model, where each five questions represents *Mellow, Contemporary, Sophisticated, Intense and Unpretentious*, respectively. In each MUSIC category, results were averaged such that number of features are reduced to 5. In each study, labels are selected to be the individual scores for each Big-Five personality traits (O, C, E, A, N). For each study, we ran the prediction on each label (i.e. score for one personality trait) individually to increase the performance of our prediction algorithm.
 
 To compare the prediction results of each study, Pearson's correlation coefficient and confidence intervals are calculated and compared with those values provided [9]. Furthermore, root mean squared error (RMSE) is calculated for each study. Below are the performance results for each study:
 
@@ -129,18 +129,18 @@ With the ever burgeoning music and streaming industry, the amount of data will c
 ## Our Data:
 - Total number of data points: N=23737
 - Number of people who also took a personality test: N=17904, among which only 8101 people disclosed their age and gender information.
-- $90\%$ ($N_{training} = 7291$) of the data is used for training and the remaining $10\%$ ($N_{test} = 810$) is used to validate the learning algorithm.
+- 90% (N_training = 7291) of the data is used for training and the remaining 10% (N_test = 810) is used to validate the learning algorithm.
 - Data normalized using the mean and variance of training data.
 - Music excerpts used in the survey are 25 seconds long and consists of 19 different genres. Below is the breakdown of the survey questions:
 
 ![Image](survey_data.png)
 
-- Based on how much participants like each song excerpt, each questions is rated with a score from 1 ($\textit{Not at all}$) to 9 ($\textit{Very Much}$).
+- Based on how much participants like each song excerpt, each questions is rated with a score from 1 (*Not at all*) to 9 (*Very Much*).
 
 - Below is the pie chart showing the distribution of the questions on the musical preferences survey according to the genres and five-factor MUSIC model each question belongs to: 
 ![Image](nested_pie_chart.png)
 
-- The Big-Five personality test contains scores of 1 ($\textit{low}$) to 5 ($\textit{high}$) for 5 different personality traits; $\textbf{O}=$ Openness, $\textbf{C}=$ Conscientiousness, $\textbf{E}=$ Extraversion, $\textbf{A}=$ Agreeableness, $\textbf{N}=$ Neuroticism.
+- The Big-Five personality test contains scores of 1 (*low*) to 5 (*high*) for 5 different personality traits; __O__= Openness, __C__= Conscientiousness, __E__= Extraversion, __A__= Agreeableness, __N__= Neuroticism.
 
 - Below is the pie chart showing the average scores for each personality trait for the first 10 points of the normalized test data: 
 ![Image](pie_chart_traits.png)
