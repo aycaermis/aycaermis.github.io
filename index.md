@@ -55,7 +55,7 @@ Table 2 shows the mean and standard deviation values corresponding to responses 
 
 Table 3 shows the mean and standard deviation values corresponding to average ratings of 5 factors in MUSIC model(i.e. 5 features).
 
-Using these mean and variance values, data is then normalized according to the formula $$ X_{norm} = \frac{X-\mu}{\sigma}$$ where X denotes the data, $\mu$ is the mean and $\sigma$ is the variance of data.
+Using these mean and variance values, data is then normalized according to the formula $X_{norm} = \frac{X-\mu}{\sigma}$ where X denotes the data, $\mu$ is the mean and $\sigma$ is the variance of data.
 
 ### 3.2. Learning Method Selection
 We randomly split our dataset into 10-folds, one for the test and 9 for the training. A linear model is trained by fitting the linear regressions with the LASSO and Ridge regularization, which help reduce the risk of overfitting issue. In order to get the best tuning parameter, $\lambda$, we run a 10-fold cross-validation of training dataset and select the $\lambda$ parameter with the smallest root-mean-square-error (RMSE) as our $\lambda$. With the trained model, we predict the labels for the test data and compare with the given labels. The accuracy the prediction is then evaluated by calculating the Pearson’s correlation coefficient between the real and predicted personality-traits. RMSE values for the prediction results are also calculated to provide a better insight on the performance of our algorithm.
